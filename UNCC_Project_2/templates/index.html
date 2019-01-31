@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Campaign Contribution Data</title>
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet">
+
+     <!-- Leaflet JS & CSS -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+     integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+     integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+     crossorigin=""></script>
+
+      <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Leaflet-Choropleth JavaScript -->
+    <script type="text/javascript" src="static/js/choropleth.js"></script>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+</head>
+
+<body>
+
+        <nav class="navbar navbar-inverse"></nav>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand active" href="index.html"><span class="blue_color">Tomp</span></span><span class="yellow_color">analytics</span></a>
+                  </div>
+              
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                      <li><a href="data_page.html">Data<span class="sr-only">(current)</span></a></li>
+                      <li><a href="comparisons_page.html">Comparisons</a></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Visualizations <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="max_temperature_page.html">Latitude vs Max Temperature</a></li>
+                          <li><a href="humidity_page.html">Latitude vs Humidity</a></li>
+                          <li><a href="wind_speed_page.html">Latitude vs Wind Speed</a></li>
+                          <li><a href="cloudiness_page.html">Latitude vs Cloudiness</a></li>
+                           <!-- The lines below create a "divider" in the drop down box. -->
+                          <!-- <li role="separator" class="divider"></li> -->
+                          <!-- <li><a href="#">Separated link</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">One more separated link</a></li> -->
+                        </ul>
+                      </li>
+                    </ul>
+        
+                    <!-- The lines below create a search box in the navigation bar. -->
+                    <!-- <form class="navbar-form navbar-left">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                      </div>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </form> -->
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Author Links<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="https://www.linkedin.com/in/tylertompa/" target="_blank">LinkedIn</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="https://github.com/tylertompa" target="_blank">Author Github</a></li>
+                          <li><a href="https://github.com/TylerTompa/6-APIs" target="_blank">Project Github</a></li>
+                          <li><a href="https://github.com/TylerTompa/Homework11-Web_Visualization_Dashboard" target="_blank">Website Github</a></li>
+                          <!-- <li><a href="#">Something else here</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">Separated link</a></li> -->
+                        </ul>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Links<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap API</a></li>
+                          <li><a href="https://pandas.pydata.org/" target="_blank">Pandas</a></li>
+                          <li><a href="https://matplotlib.org/" target="_blank">Matplotlib</a></li>
+                          <li><a href="https://getbootstrap.com/docs/3.3/" target="_blank">Bootstrap</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+        </nav>
+
+    <div class="container margin-top-50">
+
+        <!-- This div contains the bar charts for state contributions -->
+        <div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fringilla dui at est sollicitudin, sit amet ornare libero ornare. Ut gravida id mauris et finibus. Maecenas tincidunt nisl at euismod luctus. Nulla tincidunt hendrerit ligula at varius. Pellentesque mollis posuere felis, ac interdum tellus varius quis. Fusce vel dapibus erat. Suspendisse malesuada felis eu neque laoreet laoreet. Vivamus ullamcorper mattis justo, non interdum nunc tincidunt at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis blandit commodo elit sit amet faucibus. Proin id lacus consectetur, dictum enim vel, tincidunt velit.
+
+                        In ligula magna, lacinia non pulvinar a, gravida quis nulla. Sed vehicula est velit, ultricies scelerisque turpis rhoncus ac. Nunc non lacinia diam. Proin porttitor, nisl in placerat fringilla, augue urna mattis risus, nec sodales massa urna at leo. Ut massa risus, auctor id vehicula ac, porta nec quam. Sed mollis luctus dolor, quis varius ex auctor ut. Vestibulum ac elit viverra, fermentum est et, tristique purus.
+                            
+                        Donec vehicula finibus imperdiet. Maecenas justo nisl, dignissim id urna a, sollicitudin vulputate enim. Fusce id ipsum eget purus aliquet malesuada. Vivamus tristique nunc ut ipsum dignissim, sed accumsan sem bibendum. Morbi ultricies faucibus quam id commodo. Nunc nec malesuada elit, aliquet interdum mauris. Donec ut ex pellentesque tortor efficitur tempor.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row margin-top-50">
+                <div class="col-md-12">
+                    <div class="panel-body">
+                            <form>
+                                <!-- <div class="form-group"> -->
+                                    <ul class="list-group" id="filters">
+                                        <li class="filter list-group-item">
+                                            <!-- <div class="panel-heading">Filter by Candidate</div> -->
+                                            <label for="date"><select id="state_selection">
+                                                <option value="state_total">State Total</option>
+                                                <option value="state_percentage">State Percentage</option>
+                                            </select></label>
+                                            <!-- <button id="redraw_states" type="submit" class="btn btn-default">Redraw Graph</button> -->
+                                        </li>
+                                    </ul>
+                                <!-- </div> -->
+                                <!-- <button id="filter_button" type="submit" class="btn btn-default">Filter Table</button> -->
+                            </form>
+                        </div>
+                    <div id="state_bar_charts"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- This div contains the scatter plot for IPT data. -->
+        <div>
+        <!-- <div class="row margin-top-50">
+            <div class="col-md-12">
+                <p>
+                    A data table was created to analyse the growth of itemized, individual contributions throughout the general election timeframe of the 2016 campaign. The dataset is a day by day accounting of itemized individual revenue collected by the two campaigns and contains data on the number of daily contributions received, the sum total of a day's donations and the average donation amount.<br>   
+                    These daily figures are compared to general election timeframe totals to provide the percent contribution of any day's donation count and sum total to the timeframe sum total. The dataset also provides the percent contribution of any day's donation count and sum total to the grand total of itemized individual donation for the full campaign cycle. The starting points for this comparisson are as follows:<br>
+                    
+                    HRC, Coverage dates: 01/01/2013 to 12/31/2016. Total Itemized individual contributions 300,115,258 dollars
+                    36% of itemized individual contribution revenue raised in the general election timeframe, 7/26/16 - 12/31/2016
+                    DJT, Coverage dates: 04/02/2015 to 12/31/2016. Total Itemized individual contributions 46,982,264 dollars
+                    96% of itemized individual contribution revenue raised in the general election timeframe, 7/19/2016 - 12/31/2016
+                </p>
+            </div>
+        </div> -->
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <div id="incremental_percent_total">
+                    <!-- <script src="http://d3js.org/d3.v4.min.js"></script>
+                    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script> -->
+                    <div class="panel panel-default">
+                        <!-- <div class="panel-heading">Filter by Candidate</div> -->
+                        <div class="panel-body">
+                            <form>
+                                <!-- <div class="form-group"> -->
+                                    <ul class="list-group" id="filters">
+                                        <li class="filter list-group-item">
+                                            <!-- <div class="panel-heading">Filter by Candidate</div> -->
+                                            <label for="date"><select id="candidate_selection">
+                                                <option value="BOTH">Both</option>
+                                                <option value="DJT">DJT</option>
+                                                <option value="HRC">HRC</option>
+                                            </select></label>
+                                            <!-- <button id="redraw_incremental" type="submit" class="btn btn-default">Redraw Graph</button> -->
+                                        </li>
+                                    </ul>
+                                <!-- </div> -->
+                                <!-- <button id="filter_button" type="submit" class="btn btn-default">Filter Table</button> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+<!-- Bootstrap Navigation Bar -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="../bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+<!-- <script src="../static/app.js"></script> -->
+<script src="{{url_for('static', filename='js/app.js')}}"></script>
+    <!-- API key -->
+    <!-- <script type="text/javascript" src="static/js/config.js"></script> -->
+      <!-- JS  -->
+   <!-- <script type="text/javascript" src="static/js/logic.js"></script> -->
+</body>
+</html>

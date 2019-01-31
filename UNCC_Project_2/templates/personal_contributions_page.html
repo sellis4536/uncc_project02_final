@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Campaign Contribution Data</title>
+
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet">
+
+     <!-- Leaflet JS & CSS -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+     integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+     integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+     crossorigin=""></script>
+
+      <!-- d3 JavaScript -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse"></nav>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand active" href="/"><span class="red_color">2016 US</span> <span class="white_color">Election</span> <span class="blue_color">Contributions</span></a>
+                  </div>
+              
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                      <li><a href="/">Home</a></li>
+                      <li><a href="/states_contributions_page">State Contributions</a></li>
+                      <li><a href="/top_contributors_page">Top Contributors</a></li>
+                      <li><a href="/ipts_page">Candidate IPTs</a></li>
+                      <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">API<span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="/api_tutorial">Tutorial</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/candidate_states" target="_blank">State Contributions</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/djt_contributions" target="_blank">Employer Contributions DJT</a></li>
+                            <li><a href="/hrc_contributions" target="_blank">Employer Contributions HRC</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="/candidate_ipt" target="_blank">Candidate IPTs</a></li>
+                            <!-- <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li> -->
+                          </ul>
+                        </li>
+                    </ul>
+        
+                    <!-- The lines below create a search box in the navigation bar. -->
+                    <!-- <form class="navbar-form navbar-left">
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                      </div>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </form> -->
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Links<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="https://www.fec.gov/data/browse-data/?tab=candidates" target="_blank">Federal Election Commission</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="https://www.linkedin.com/in/matthew-carty-135b51139/" target="_blank">Matthew Carty Linkedin</a></li>
+                          <li><a href="https://github.com/mjcarty2" target="_blank">Matthew Carty Github</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="https://www.linkedin.com/in/steve-ellis-7471194" target="_blank">Steve Ellis Linkedin</a></li>
+                          <li><a href="https://github.com/sellis4536" target="_blank">Steve Ellis Github</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="https://www.linkedin.com/in/tylertompa/" target="_blank">Tyler Tompa Linkedin</a></li>
+                          <li><a href="https://github.com/tylertompa" target="_blank">Tyler Tompa Github</a></li>
+                          <!-- <li><a href="#">Something else here</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#">Separated link</a></li> -->
+                        </ul>
+                      </li>
+                      <!-- <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other Links<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="https://d3js.org/" target="_blank">D3</a></li>
+                          <li><a href="http://dimplejs.org/" target="_blank">dimple</a></li>
+                          <li><a href="https://matplotlib.org/" target="_blank">Matplotlib</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="https://getbootstrap.com/docs/3.3/" target="_blank">Bootstrap</a></li>
+                        </ul>
+                      </li> -->
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container margin-top-50">
+
+        <!-- This div contains the scatter plot for IPT data. -->
+        <div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Federal reporting requirements for itemized donations include self-reported employer and occupation.  While inconsistent, this data offers insight for industry and institutional support for a candidate.  In 2016, both candidates maintain frequently observed levels of support from retired, self employed and unemployed (including homemaker) donors.  In the case of HRC, employees of notable brand names and institutions represent a significant percentage of revenue.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <div class="form-group">
+                      <ul class="list-group" id="filters">
+                        <li class="filter list-group-item">
+                          <label for="date">Display Top X Contributors</label>
+                          <input class="form-control" id="top_x" type="text" placeholder="3"><br>
+                          <button id="filter-btn" type="submit" class="btn btn-default">Filter Graphs</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </form>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div id="djt_pie">
+                </div>
+
+            </div>
+            <div class="col-md-6">
+            <div id="hrc_pie">
+            </div>
+
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+<!-- Bootstrap Navigation Bar -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="../bootstrap-3.3.7-dist/bootstrap-3.3.7-dist/js/bootstrap.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+<!-- <script src="../static/app.js"></script> -->
+<!-- <script src="{{url_for('static', filename='js/app.js')}}"></script> -->
+<script src="../static/js/employer_contributions_app.js"></script>
+    <!-- API key -->
+    <!-- <script type="text/javascript" src="static/js/config.js"></script> -->
+      <!-- JS  -->
+   <!-- <script type="text/javascript" src="static/js/logic.js"></script> -->
+</body>
+</html>
